@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Figure {
+  id Int @default(autoincrement()) @id
+  width Float
+  height Float
+  x1 Float
+  y1 Float
+  x2 Float
+  y2 Float
+  sceneId Int?
+  scene Scene? @relation(fields: [sceneId], references: [id], onDelete: Cascade)
+}
+
+model Scene {
+  id Int @default(autoincrement()) @id
+  figures Figure[]
+}
