@@ -15,7 +15,7 @@ export class SceneService {
 
   async create(): Promise<Scene> {
     return this.prismaService.scene.create({
-      data: { figures: {} },
+      data: {},
     });
   }
 
