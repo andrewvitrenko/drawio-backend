@@ -2,15 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { FigureModule } from './figure/figure.module';
 import { PrismaService } from './prisma/prisma.service';
-import { FigureController } from './figure/figure.controller';
-import { FigureService } from './figure/figure.service';
-import { SceneService } from './scene/scene.service';
-import { SceneController } from './scene/scene.controller';
+import { SceneModule } from './scene/scene.module';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [AppController, FigureController, SceneController],
-  providers: [AppService, PrismaService, FigureService, SceneService],
+  imports: [ConfigModule.forRoot(), FigureModule, SceneModule],
+  controllers: [AppController],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}

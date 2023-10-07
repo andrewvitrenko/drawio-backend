@@ -1,24 +1,27 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsOptional } from 'class-validator';
 
 export class UpdateFigureDto {
   @IsNumber()
-  width: number;
+  @IsOptional()
+  width?: number;
 
   @IsNumber()
-  height: number;
+  @IsOptional()
+  height?: number;
 
   @IsNumber()
-  x1: number;
+  @IsOptional()
+  x1?: number;
 
   @IsNumber()
-  y1: number;
+  @IsOptional()
+  y1?: number;
 
   @IsNumber()
-  x2: number;
+  @IsOptional()
+  x2?: number;
 
   @IsNumber()
-  y2: number;
-
-  @IsNumber()
-  sceneId: number;
+  @IsOptional()
+  y2?: number;
 }
