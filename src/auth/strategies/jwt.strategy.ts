@@ -18,13 +18,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate({ userId }: TokenPayload): Promise<boolean> {
+  async validate({ userId }: TokenPayload): Promise<TokenPayload> {
     const user = await this.userService.getById(userId);
 
     if (!user) {
       throw new UnauthorizedException('User does not exit');
     }
 
-    return true;
+    return { userId };
   }
 }
