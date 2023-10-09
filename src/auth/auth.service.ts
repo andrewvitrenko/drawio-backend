@@ -22,7 +22,7 @@ export class AuthService {
   async signup(
     registerUserDto: SignupUserDto,
   ): Promise<Omit<User, 'password'>> {
-    const user = this.userService.getByEmail(registerUserDto.email);
+    const user = await this.userService.getByEmail(registerUserDto.email);
 
     if (user) {
       throw new ConflictException('User already exists');
