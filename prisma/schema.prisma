@@ -24,16 +24,17 @@ model Scene {
   id      Int      @id @default(autoincrement())
   figures Figure[]
   userId  Int
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User @relation(fields: [userId], references: [id], onDelete: Cascade)
   name    String
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String?
-  Scene    Scene[]
-  password String
+  id            Int     @id @default(autoincrement())
+  email         String  @unique
+  name          String?
+  Scene         Scene[]
+  password      String
+  refreshTokens String[]
 }
 
 enum FigureShape {

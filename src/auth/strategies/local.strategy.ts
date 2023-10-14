@@ -3,16 +3,18 @@ import { PassportStrategy } from '@nestjs/passport';
 import { User } from '@prisma/client';
 import { compare } from 'bcrypt';
 import { Strategy } from 'passport-local';
-import { UserService } from '../../user/user.service';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-  constructor(private userService: UserService) {
+  constructor(private prismaService: PrismaService) {
     super({ usernameField: 'email' });
   }
 
   async validate(email: string, password: string): Promise<User> {
-    const user = await this.userService.getByEmail(email);
+    const user = await this.prismaService.user.findUnique({
+      where: { email },
+    });
 
     if (!user) {
       throw new UnauthorizedException('User was not found');

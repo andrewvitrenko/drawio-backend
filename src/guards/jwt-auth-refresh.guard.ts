@@ -8,7 +8,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 
 @Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {
+export class JwtAuthRefreshGuard extends AuthGuard('jwt-refresh') {
   handleRequest(err, user, info, ctx, status) {
     if (info instanceof TokenExpiredError) {
       throw new ForbiddenException('Token is expired');
@@ -22,4 +22,4 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
 }
 
-export const UseJwtGuard = () => UseGuards(JwtAuthGuard);
+export const UseJwtRefreshGuard = () => UseGuards(JwtAuthRefreshGuard);
