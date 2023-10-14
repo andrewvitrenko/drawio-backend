@@ -1,9 +1,11 @@
-import { PrismaService } from '@/prisma/prisma.service';
-import { User } from '@/types';
-import { exclude } from '@/utils/exclude';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { genSalt, hash } from 'bcrypt';
+
+import { PrismaService } from '@/prisma/prisma.service';
+import { User } from '@/types';
+import { exclude } from '@/utils/exclude';
+
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 

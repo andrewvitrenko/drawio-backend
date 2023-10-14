@@ -1,4 +1,3 @@
-import { PrismaService } from '@/prisma/prisma.service';
 import {
   ForbiddenException,
   Injectable,
@@ -8,6 +7,9 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+
+import { PrismaService } from '@/prisma/prisma.service';
+
 import { RefreshTokenPayload, TokenPayload } from '../types';
 
 @Injectable()

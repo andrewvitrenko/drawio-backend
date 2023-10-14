@@ -1,8 +1,10 @@
-import { User } from '@/types';
-import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+
+import { User } from '@/types';
+import { UserService } from '@/user/user.service';
+
 import { SignupUserDto } from './dto/signup-user.dto';
 import { Tokens } from './types';
 

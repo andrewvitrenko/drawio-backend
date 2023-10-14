@@ -1,6 +1,8 @@
-import { PrismaService } from '@/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 import { Figure } from '@prisma/client';
+
+import { PrismaService } from '@/prisma/prisma.service';
+
 import { CreateFigureDto } from './dto/create-figure.dto';
 import { UpdateFigureDto } from './dto/update-figure.dto';
 
