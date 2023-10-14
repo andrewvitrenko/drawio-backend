@@ -9,6 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { Figure } from '@prisma/client';
+
 import { CreateFigureDto } from './dto/create-figure.dto';
 import { UpdateFigureDto } from './dto/update-figure.dto';
 import { FigureService } from './figure.service';
