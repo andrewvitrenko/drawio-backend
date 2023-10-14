@@ -1,5 +1,6 @@
-import { IsNumber, IsOptional } from 'class-validator';
+import { IsNumber, IsOptional, IsPositive } from 'class-validator';
 
+// TODO: connect with CreateFigureDto and Figure model
 export class UpdateFigureDto {
   @IsNumber()
   @IsOptional()
@@ -7,6 +8,8 @@ export class UpdateFigureDto {
 
   @IsNumber()
   @IsOptional()
+  @IsPositive()
+  @IsPositive()
   height?: number;
 
   @IsNumber()

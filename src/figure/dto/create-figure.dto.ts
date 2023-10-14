@@ -1,10 +1,13 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsPositive } from 'class-validator';
 
+// TODO: connect with Figure model
 export class CreateFigureDto {
   @IsNumber()
+  @IsPositive()
   width: number;
 
   @IsNumber()
+  @IsPositive()
   height: number;
 
   @IsNumber()

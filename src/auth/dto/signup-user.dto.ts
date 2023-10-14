@@ -1,4 +1,11 @@
-import { IsEmail, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 // TODO: connect with CreateUserDto
 export class SignupUserDto {
@@ -12,5 +19,6 @@ export class SignupUserDto {
 
   @IsString()
   @IsOptional()
+  @IsNotEmpty()
   name?: string;
 }
