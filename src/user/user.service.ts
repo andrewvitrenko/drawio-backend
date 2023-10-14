@@ -1,9 +1,9 @@
+import { PrismaService } from '@/prisma/prisma.service';
+import { User } from '@/types';
+import { exclude } from '@/utils/exclude';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
 import { genSalt, hash } from 'bcrypt';
-import { PrismaService } from '../prisma/prisma.service';
-import { exclude } from '../utils/exclude';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -14,10 +14,7 @@ export class UserService {
     private jwtService: JwtService,
   ) {}
 
-  async create({
-    password,
-    ...userData
-  }: CreateUserDto): Promise<Omit<User, 'password' | 'refreshTokens'>> {
+  async create({ password, ...userData }: CreateUserDto): Promise<User> {
     const existingUser = await this.prismaService.user.findUnique({
       where: { email: userData.email },
     });
@@ -37,7 +34,7 @@ export class UserService {
     return exclude(user, ['password', 'refreshTokens']);
   }
 
-  async remove(id: number): Promise<Omit<User, 'password' | 'refreshTokens'>> {
+  async remove(id: number): Promise<User> {
     const user = await this.prismaService.user.delete({
       where: { id },
     });
@@ -45,10 +42,7 @@ export class UserService {
     return exclude(user, ['password', 'refreshTokens']);
   }
 
-  async update(
-    id: number,
-    updateUserDto: UpdateUserDto,
-  ): Promise<Omit<User, 'password' | 'refreshTokens'>> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.prismaService.user.update({
       where: { id },
       data: updateUserDto,

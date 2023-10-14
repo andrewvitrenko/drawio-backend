@@ -1,9 +1,9 @@
+import { GetUserData } from '@/decorators/get-user-data.decorator';
+import { UseJwtRefreshGuard } from '@/guards/jwt-auth-refresh.guard';
+import { UseJwtGuard } from '@/guards/jwt-auth.guard';
+import { UseLocalAuthGuard } from '@/guards/local-auth.guard';
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { GetUserData } from '../decorators/get-user-data.decorator';
-import { UseJwtRefreshGuard } from '../guards/jwt-auth-refresh.guard';
-import { UseJwtGuard } from '../guards/jwt-auth.guard';
-import { UseLocalAuthGuard } from '../guards/local-auth.guard';
 import { AuthService } from './auth.service';
 import { SignupUserDto } from './dto/signup-user.dto';
 import { RefreshTokenPayload } from './types';

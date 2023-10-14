@@ -1,8 +1,8 @@
+import { User } from '@/types';
+import { UserService } from '@/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
-import { UserService } from '../user/user.service';
 import { SignupUserDto } from './dto/signup-user.dto';
 import { Tokens } from './types';
 
@@ -23,9 +23,7 @@ export class AuthService {
     return tokens;
   }
 
-  async signup(
-    registerUserDto: SignupUserDto,
-  ): Promise<Omit<User, 'password' | 'refreshTokens'>> {
+  async signup(registerUserDto: SignupUserDto): Promise<User> {
     return this.userService.create(registerUserDto);
   }
 

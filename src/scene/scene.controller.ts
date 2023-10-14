@@ -1,3 +1,4 @@
+import { UseJwtGuard } from '@/guards/jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -8,7 +9,6 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { UseJwtGuard } from '../guards/jwt-auth.guard';
 import { CreateSceneDto } from './dto/create-scene.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { SceneService } from './scene.service';
