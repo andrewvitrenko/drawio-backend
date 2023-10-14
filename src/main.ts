@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+
 import { AppModule } from './app.module';
 import { PrismaFilter } from './prisma/prisma.filter';
 
