@@ -1,24 +1,30 @@
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsOptional, IsPositive } from 'class-validator';
 
+// TODO: connect with CreateFigureDto and Figure model
 export class UpdateFigureDto {
   @IsNumber()
-  width: number;
+  @IsOptional()
+  width?: number;
 
   @IsNumber()
-  height: number;
+  @IsOptional()
+  @IsPositive()
+  @IsPositive()
+  height?: number;
 
   @IsNumber()
-  x1: number;
+  @IsOptional()
+  x1?: number;
 
   @IsNumber()
-  y1: number;
+  @IsOptional()
+  y1?: number;
 
   @IsNumber()
-  x2: number;
+  @IsOptional()
+  x2?: number;
 
   @IsNumber()
-  y2: number;
-
-  @IsNumber()
-  sceneId: number;
+  @IsOptional()
+  y2?: number;
 }

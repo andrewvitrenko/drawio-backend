@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Scene } from '@prisma/client';
 
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@/prisma/prisma.service';
+
+import { CreateSceneDto } from './dto/create-scene.dto';
+import { UpdateSceneDto } from './dto/update-scene.dto';
 
 @Injectable()
 export class SceneService {
@@ -14,13 +17,20 @@ export class SceneService {
     });
   }
 
-  async create(): Promise<Scene> {
+  async create(createSceneDto: CreateSceneDto): Promise<Scene> {
     return this.prismaService.scene.create({
-      data: {},
+      data: createSceneDto,
     });
   }
 
   async remove(id: number): Promise<Scene> {
     return this.prismaService.scene.delete({ where: { id } });
+  }
+
+  async update(id: number, updateSceneDto: UpdateSceneDto): Promise<Scene> {
+    return this.prismaService.scene.update({
+      where: { id },
+      data: updateSceneDto,
+    });
   }
 }
