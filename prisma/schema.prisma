@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Figure {
-  id      Int    @id @default(autoincrement())
+  id      Int        @id @default(autoincrement())
   width   Float
   height  Float
   x1      Float
@@ -16,8 +16,9 @@ model Figure {
   x2      Float
   y2      Float
   rotate  Float?
+  shape   FigureShape
   sceneId Int
-  scene   Scene  @relation(fields: [sceneId], references: [id], onDelete: Cascade)
+  scene   Scene      @relation(fields: [sceneId], references: [id], onDelete: Cascade)
 }
 
 model Scene {
@@ -29,8 +30,8 @@ model Scene {
 }
 
 model User {
-  id            Int     @id @default(autoincrement())
-  email         String  @unique
+  id    Int    @id @default(autoincrement())
+  email String @unique
   name          String?
   Scene         Scene[]
   password      String
