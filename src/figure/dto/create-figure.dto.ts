@@ -1,4 +1,5 @@
-import { IsNumber, IsPositive } from 'class-validator';
+import { FigureShape } from '@prisma/client';
+import { IsEnum, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
 // TODO: connect with Figure model
 export class CreateFigureDto {
@@ -24,4 +25,8 @@ export class CreateFigureDto {
 
   @IsNumber()
   sceneId: number;
+
+  @IsNotEmpty()
+  @IsEnum(FigureShape)
+  shape: FigureShape;
 }
