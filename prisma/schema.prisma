@@ -8,17 +8,30 @@ datasource db {
 }
 
 model Figure {
-  id      Int        @id @default(autoincrement())
-  width   Float
-  height  Float
-  x1      Float
-  y1      Float
-  x2      Float
-  y2      Float
-  rotate  Float?
-  shape   FigureShape
-  sceneId Int
-  scene   Scene      @relation(fields: [sceneId], references: [id], onDelete: Cascade)
+  id              Int                @id @default(autoincrement())
+  width           Float
+  height          Float
+  x1              Float
+  y1              Float
+  x2              Float
+  y2              Float
+  rotate          Float?
+  shape           FigureShape
+  sceneId         Int
+  scene           Scene              @relation(fields: [sceneId], references: [id], onDelete: Cascade)
+  connectionsTo   FigureConnection[] @relation("DistConnection")
+  connectionsFrom FigureConnection[] @relation("SrcConnection")
+}
+
+model FigureConnection {
+  id     Int @id @default(autoincrement())
+  srcId  Int
+  distId Int
+
+  src  Figure @relation("SrcConnection", fields: [srcId], references: [id], onDelete: Cascade)
+  dist Figure @relation("DistConnection", fields: [distId], references: [id], onDelete: Cascade)
+
+  @@unique([srcId, distId])
 }
 
 model Scene {
